@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 from webapp.database import init_db
 from flask_sqlalchemy import SQLAlchemy
 
@@ -32,8 +32,8 @@ def create_app(test_config=None):
 
     # a simple page that says hello
     @app.route('/')
-    def hello():
-        return 'Hello, World!'
+    def index():
+        return render_template("index.html")
 
     from . import auth
     app.register_blueprint(auth.bp)
