@@ -11,7 +11,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'exploration.db'),
+        DATABASE=os.path.join(app.instance_path, 'adventure.db'),
     )
 
     db = SQLAlchemy(app)
@@ -35,11 +35,11 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
-    from . import auth, group1, group2, group3
+    from . import auth
     app.register_blueprint(auth.bp)
-    app.register_blueprint(group1.bp)
-    app.register_blueprint(group2.bp)
-    app.register_blueprint(group3.bp)
+    # app.register_blueprint(group1.bp)
+    # app.register_blueprint(group2.bp)
+    # app.register_blueprint(group3.bp)
 
     db.init_app(app)
 
