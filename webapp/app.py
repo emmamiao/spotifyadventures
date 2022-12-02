@@ -1,66 +1,37 @@
 import os
 
-import http.client
-# Configure application
-app = Flask(__name__)
+from flask import Flask, render_template
+from webapp.database import init_db
+from flask_sqlalchemy import SQLAlchemy
 
-# Configure session to use filesystem (instead of signed cookies)
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+db = SQLAlchemy()
 
-# # Make sure API key is set
-# if not os.environ.get("API_KEY"):
-#     raise RuntimeError("API_KEY not set")
+def create_app(test_config=None):
+    # create and configure the app
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_mapping(
+        SECRET_KEY='dev',
+        DATABASE=os.path.join(app.instance_path, 'adventure.db'),
+    )
 
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/adventures.db'
 
-# @app.after_request
-# def after_request(response):
-#     """Ensure responses aren't cached"""
-#     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-#     response.headers["Expires"] = 0
-#     response.headers["Pragma"] = "no-cache"
-#     return response
-    
+    db = SQLAlchemy(app)
+    db.app = app
 
-# # start of API 
-# conn = http.client.HTTPSConnection("spotify23.p.rapidapi.com")
+    if test_config is None:
+        # load the instance config, if it exists, when not testing
+        app.config.from_pyfile('config.py', silent=True)
+    else:
+        # load the test config if passed in
+        app.config.from_mapping(test_config)
 
-# headers = {
-#     'X-RapidAPI-Key': "SIGN-UP-FOR-KEY",
-#     'X-RapidAPI-Host': "spotify23.p.rapidapi.com"
-#     }
+    # ensure the instance folder exists
+    try:
+        os.makedirs(app.instance_path)
+    except OSError:
+        pass
 
-# conn.request("GET", "/search/?q=%3CREQUIRED%3E&type=multi&offset=0&limit=10&numberOfTopResults=5", headers=headers)
-
-# res = conn.getresponse()
-# data = res.read()
-
-# print(data.decode("utf-8"))
-
-# #end of API
-
-@app.route("/")
+@app.route('sentencer')
 def index():
-  return render_template("index.html")
-
- 
-# @app.route("/sentencer")
-# @login_required
-# def sentencer():
-#     """Show portfolio of stocks"""
-#     user_id = session["user_id"]
-#     transactions_db = db.execute(
-#         "SELECT symbol, SUM(shares) AS shares, price FROM transactions WHERE user_id = ? GROUP BY symbol", user_id)
-#     cash_db = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
-#     cash = cash_db[0]["cash"]
-
-#     totalstockvalue = 0
-#     for row in transactions_db:
-#         totalstockvalue += row["shares"]*row["price"]
-
-#     totalcapital = totalstockvalue + cash
-
-#     return render_template("index.html", database=transactions_db, cash=cash, totalstockvalue=totalstockvalue, totalcapital = totalcapital)
-
-
+    return render_template("index.html")
