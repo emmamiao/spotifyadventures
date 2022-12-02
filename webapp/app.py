@@ -1,37 +1,18 @@
-import os
+import functools
 
-from flask import Flask, render_template
-from webapp.database import init_db
-from flask_sqlalchemy import SQLAlchemy
+from flask import (
+    Blueprint, flash, g, redirect, render_template, request, session, url_for
+)
+from werkzeug.security import check_password_hash, generate_password_hash
+from webapp.database import db_session
+from webapp.database import User
 
-db = SQLAlchemy()
+bp = Blueprint('group1', __name__, url_prefix='/')
 
-def create_app(test_config=None):
-    # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'adventure.db'),
-    )
-
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/adventures.db'
-
-    db = SQLAlchemy(app)
-    db.app = app
-
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
+@bp.route("login", methods=["GET", "POST"])
+def login():
+    '''Renders the login page.'''
+    if request.method == "POST":
+        return render_template("home.html")
     else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
-
-    # ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
-
-@app.route('sentencer')
-def index():
-    return render_template("index.html")
+        return render_template("login.html")
