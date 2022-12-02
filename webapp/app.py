@@ -1,5 +1,6 @@
 import os
 
+
 from flask import Flask, render_template
 from webapp.database import init_db
 from flask_sqlalchemy import SQLAlchemy
@@ -35,3 +36,4 @@ def create_app(test_config=None):
 @db.route('sentencer')
 def index():
     return render_template("index.html")
+
