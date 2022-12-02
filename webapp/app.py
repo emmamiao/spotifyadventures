@@ -20,8 +20,5 @@ def login():
 @bp.route("sentencer", methods=["GET", "POST"])
 def sentencer():
     '''creates the sentences.'''
-    if request.method == "POST":
-        return render_template("sentencer.html")
-
-    else:
+    if request.method == "GET":
         return render_template("sentencer.html")
