@@ -4,6 +4,7 @@ from flask import Flask, render_template
 from webapp.database import init_db
 from flask_sqlalchemy import SQLAlchemy
 
+
 db = SQLAlchemy()
 
 def create_app(test_config=None):
@@ -36,6 +37,7 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
         return render_template("index.html")
+    
 
     from . import auth
     app.register_blueprint(auth.bp)
