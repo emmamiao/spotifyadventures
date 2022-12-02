@@ -16,3 +16,12 @@ def login():
         return render_template("home.html")
     else:
         return render_template("login.html")
+
+@bp.route("sentencer", methods=["GET", "POST"])
+def sentencer():
+    '''creates the sentences.'''
+    if request.method == "POST":
+        return render_template("sentencer.html")
+
+    else:
+        return render_template("sentencer.html")
