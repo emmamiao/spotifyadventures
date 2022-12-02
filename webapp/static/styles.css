@@ -1,0 +1,53 @@
+body {
+    font-size: 15px;
+    line-height: 2;
+    text-align: center;
+    font-family: garamond, times, sans-serif, arial, helvetica;
+    background-color: hotpink;
+  }
+  
+  .column {
+      float: left;
+      width: 50%;
+    }
+  
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+     }
+  
+  h2{
+    font-size: 35px;
+    font-family: Times;
+    color: purple;
+  }
+  h3{
+    font-size: 30px;
+    font-family: Verdana;
+    color: Indigo;
+  }
+  h4{
+    font-size: 25px;
+    font-family: Garamond;
+  }
+  
+  p{
+    font-family: Garamond;
+  }
+  
+  .bookspage{
+    background-color: purple;
+  }
+  
+  #books {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #books td, #books th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
