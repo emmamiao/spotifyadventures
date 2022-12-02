@@ -14,6 +14,8 @@ def create_app(test_config=None):
         DATABASE=os.path.join(app.instance_path, 'adventure.db'),
     )
 
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/adventures.db'
+
     db = SQLAlchemy(app)
     db.app = app
 
