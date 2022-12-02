@@ -23,7 +23,6 @@ class User(Base):
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False)
-    username = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
     song1 = Column(Integer, default = None)
     song2 = Column(Integer, default = None)
@@ -40,7 +39,6 @@ class User(Base):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
-        self.username = username
         self.password = password
         self.song1 = song1
         self.song2 = song2
@@ -54,4 +52,4 @@ class User(Base):
         self.song10 = song10
 
     def __repr__(self):
-        return f'<User {self.id, self.username!r}>'
+        return f'<User {self.id!r}>'
