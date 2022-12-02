@@ -5,6 +5,10 @@ body {
     font-family: garamond, times, sans-serif, arial, helvetica;
     background-color: hotpink;
   }
+
+li {
+    
+}
   
   .column {
       float: left;
