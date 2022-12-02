@@ -15,7 +15,7 @@ def create_app(test_config=None):
         DATABASE=os.path.join(app.instance_path, 'adventure.db'),
     )
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/adventures.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/adventure.db'
 
     db = SQLAlchemy(app)
     db.app = app
@@ -38,11 +38,9 @@ def create_app(test_config=None):
     def index():
         return render_template("index.html")
     
-    from . import auth
+    from . import auth, application
     app.register_blueprint(auth.bp)
-    # app.register_blueprint(group1.bp)
-    # app.register_blueprint(group2.bp)
-    # app.register_blueprint(group3.bp)
+    app.register_blueprint(application.bp)
 
     db.init_app(app)
 
