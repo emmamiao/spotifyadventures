@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<!-- <html>
+  <head>
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Poppins'>
+    <link href="../static/styles.css" rel="stylesheet" type="text/css">
+    <title>Log In</title>
+    
+  </head> -->
+  <html lang="en">
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <link href="../static/styles.css" rel="stylesheet">
         <title>Spotify Adventures: {% block title %}{% endblock %}</title>
     </head>
+
+
+
     <body>
 
         <!-- this is a navbar from boostrap -->
@@ -34,45 +44,19 @@
             </ul>
         </nav>
 
-        <h1>Welcome to ______! Please log in with your Spotify login below:</h1>
-
-        <p>
-    On this site, you will be able to experiment with the Spotify API. After logging in with your Spotify, 
-    you'll be able to make playlists based on inputs, get song recommendations, search up the danceability of
-    songs, and more! 
-
-    Please input a song title: 
-    <form action="/action_page.php">
-        <label for="song1">Song 1:</label>
-        <input type="text" id="song1" name="song1"><br><br>
-        <!-- the "name" component is the request.form.get in python  -->
-        <!-- you must add this name component to some kind of database -->
-        <label for="song2">Song 2:</label>
-        <input type="text" id="song2" name="song2"><br><br>
-        <label for="song3">Song 3:</label>
-        <input type="text" id="song3" name="song3"><br><br>
-        <label for="song2">Song 4:</label>
-        <input type="text" id="song4" name="song4"><br><br>
-        <label for="song2">Song 5:</label>
-        <input type="text" id="song5" name="song5"><br><br>
-        <label for="song2">Song 6:</label>
-        <input type="text" id="song6" name="song6"><br><br>
-        <label for="song2">Song 7:</label>
-        <input type="text" id="song7" name="song7"><br><br>
-        <label for="song2">Song 8:</label>
-        <input type="text" id="song8" name="song8"><br><br>
-        <label for="song2">Song 9:</label>
-        <input type="text" id="song9" name="song9"><br><br>
-        <label for="song2">Song 10:</label>
-        <input type="text" id="song10" name="song10"><br><br>
-        <input type="submit" value="Submit">
-      </form>
-        </p>
-
-
-<footer class="mb-5 small text-center text-muted">
-    Data provided by <a href="https://open.spotify.com">Spotify</a>
-</footer>
-
-    </body>
+  <body>
+    <h1>
+      Songs from Sentences!
+    </h1>
+    <h2>
+      Enter a sentence below:
+      <div>
+        <input class="textbox" type="text" id="email" placeholder="Harvard Email Address"><br><br>
+      </div>
+      <div>
+        <button class= "button" id="Submit">Submit!</button>
+      </div>
+    </h2>
+    
+  </body>
 </html>
